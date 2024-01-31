@@ -41,10 +41,7 @@ public class UserService {
         }
         User userToUpdate = optionalUser.get();
 
-        userToUpdate.setFirstName(user.getFirstName());
-        userToUpdate.setSecondName(user.getSecondName());
         userToUpdate.setUsername(user.getUsername());
-        userToUpdate.setPassword(user.getPassword());
         userToUpdate.setEmail(user.getEmail());
 
         return userRepository.save(userToUpdate);
