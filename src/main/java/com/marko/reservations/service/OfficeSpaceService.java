@@ -1,5 +1,6 @@
 package com.marko.reservations.service;
 
+import com.marko.reservations.exception.EntityNotFoundException;
 import com.marko.reservations.model.OfficeRoom;
 import com.marko.reservations.model.OfficeSpace;
 import com.marko.reservations.repository.OfficeSpaceRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OfficeSpaceService {
@@ -21,7 +23,24 @@ public class OfficeSpaceService {
         return officeSpaceRepository.findAll();
     }
 
+    public Optional<OfficeSpace> getById(long id) {
+        Optional<OfficeSpace> optionalOfficeSpace = officeSpaceRepository.findById(id);
+        if (optionalOfficeSpace.isPresent()) {
+            return  optionalOfficeSpace;
+        }
+        throw new EntityNotFoundException("Office Space with id " + id + " not found in database!");
+    }
+
     public OfficeSpace saveSpace(OfficeSpace officeSpace) {
         return officeSpaceRepository.save(officeSpace);
+    }
+
+    public void deleteOfficeSpace(long id) {
+        Optional<OfficeSpace> optionalOfficeSpace = officeSpaceRepository.findById(id);
+        if (optionalOfficeSpace.isPresent()) {
+            OfficeSpace officeSpace = optionalOfficeSpace.get();
+            officeSpaceRepository.delete(officeSpace);
+        }
+        throw new EntityNotFoundException("Office Space with id " + id + " not found in database!");
     }
 }
