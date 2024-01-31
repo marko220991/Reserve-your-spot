@@ -25,10 +25,10 @@ public class UserService {
 
     public Optional<User> getById(long id) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            return user;
+        if (user.isEmpty()) {
+            throw new EntityNotFoundException("User with id " + id + " not found in database!");
         }
-        throw new EntityNotFoundException("User with id " + id + " not found in database!");
+        return user;
     }
     public User saveUser(User user) {
         return userRepository.save(user);
@@ -36,26 +36,26 @@ public class UserService {
 
     public User updateUser(User user, long id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            User userToUpdate = optionalUser.get();
-
-            userToUpdate.setFirstName(user.getFirstName());
-            userToUpdate.setSecondName(user.getSecondName());
-            userToUpdate.setUsername(user.getUsername());
-            userToUpdate.setPassword(user.getPassword());
-            userToUpdate.setEmail(user.getEmail());
-
-            return userRepository.save(userToUpdate);
+        if (optionalUser.isEmpty()) {
+            throw new EntityNotFoundException("User with id " + id + " not found in database so it cannot be updated!");
         }
-        throw new EntityNotFoundException("User with id " + id + " not found in database so it cannot be updated!");
+        User userToUpdate = optionalUser.get();
+
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setSecondName(user.getSecondName());
+        userToUpdate.setUsername(user.getUsername());
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setEmail(user.getEmail());
+
+        return userRepository.save(userToUpdate);
     }
 
     public void deleteUser(long id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            User userToDelete = optionalUser.get();
-            userRepository.delete(userToDelete);
+        if (optionalUser.isEmpty()) {
+            throw new EntityNotFoundException("User with id " + id + " not found in database!");
         }
-        throw new EntityNotFoundException("User with id " + id + " not found in database!");
+        User userToDelete = optionalUser.get();
+        userRepository.delete(userToDelete);
     }
 }

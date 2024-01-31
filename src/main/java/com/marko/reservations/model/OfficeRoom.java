@@ -24,5 +24,6 @@ public class OfficeRoom {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "office_space_id")
+    @JsonIgnore
     private OfficeSpace officeSpace;
 }

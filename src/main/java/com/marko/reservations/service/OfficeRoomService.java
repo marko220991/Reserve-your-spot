@@ -23,10 +23,10 @@ public class OfficeRoomService {
     }
     public Optional<OfficeRoom> getById(long id) {
         Optional<OfficeRoom> optionalOfficeRoom = officeRoomRepository.findById(id);
-        if (optionalOfficeRoom.isPresent()) {
-            return  optionalOfficeRoom;
+        if (optionalOfficeRoom.isEmpty()) {
+            throw new EntityNotFoundException("Office Room with id " + id + " not found in database!");
         }
-        throw new EntityNotFoundException("Office Room with id " + id + " not found in database!");
+        return  optionalOfficeRoom;
     }
     public OfficeRoom saveRoom(OfficeRoom officeRoom) {
         return officeRoomRepository.save(officeRoom);
@@ -34,10 +34,10 @@ public class OfficeRoomService {
 
     public void deleteOfficeRoom(long id) {
         Optional<OfficeRoom> optionalOfficeRoom = officeRoomRepository.findById(id);
-        if (optionalOfficeRoom.isPresent()) {
-            OfficeRoom officeRoom = optionalOfficeRoom.get();
-            officeRoomRepository.delete(officeRoom);
+        if (optionalOfficeRoom.isEmpty()) {
+            throw new EntityNotFoundException("Office Room with id " + id + " not found in database!");
         }
-        throw new EntityNotFoundException("Office Room with id " + id + " not found in database!");
+        OfficeRoom officeRoom = optionalOfficeRoom.get();
+        officeRoomRepository.delete(officeRoom);
     }
 }

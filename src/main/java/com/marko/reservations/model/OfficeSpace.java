@@ -25,6 +25,5 @@ public class OfficeSpace {
     private String location;
 
     @OneToMany(mappedBy = "officeSpace", fetch = FetchType.LAZY)
-    @JsonIgnore
     List<OfficeRoom> rooms;
 }

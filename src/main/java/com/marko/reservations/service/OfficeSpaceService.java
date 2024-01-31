@@ -25,10 +25,10 @@ public class OfficeSpaceService {
 
     public Optional<OfficeSpace> getById(long id) {
         Optional<OfficeSpace> optionalOfficeSpace = officeSpaceRepository.findById(id);
-        if (optionalOfficeSpace.isPresent()) {
-            return  optionalOfficeSpace;
+        if (optionalOfficeSpace.isEmpty()) {
+            throw new EntityNotFoundException("Office Space with id " + id + " not found in database!");
         }
-        throw new EntityNotFoundException("Office Space with id " + id + " not found in database!");
+        return  optionalOfficeSpace;
     }
 
     public OfficeSpace saveSpace(OfficeSpace officeSpace) {
@@ -37,10 +37,10 @@ public class OfficeSpaceService {
 
     public void deleteOfficeSpace(long id) {
         Optional<OfficeSpace> optionalOfficeSpace = officeSpaceRepository.findById(id);
-        if (optionalOfficeSpace.isPresent()) {
-            OfficeSpace officeSpace = optionalOfficeSpace.get();
-            officeSpaceRepository.delete(officeSpace);
+        if (optionalOfficeSpace.isEmpty()) {
+            throw new EntityNotFoundException("Office Space with id " + id + " not found in database!");
         }
-        throw new EntityNotFoundException("Office Space with id " + id + " not found in database!");
+        OfficeSpace officeSpace = optionalOfficeSpace.get();
+        officeSpaceRepository.delete(officeSpace);
     }
 }
