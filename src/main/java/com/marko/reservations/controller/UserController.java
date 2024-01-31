@@ -1,6 +1,5 @@
 package com.marko.reservations.controller;
 
-import com.marko.reservations.exception.UserNotFoundException;
 import com.marko.reservations.model.User;
 import com.marko.reservations.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

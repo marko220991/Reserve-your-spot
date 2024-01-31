@@ -1,6 +1,6 @@
 package com.marko.reservations.service;
 
-import com.marko.reservations.exception.UserNotFoundException;
+import com.marko.reservations.exception.EntityNotFoundException;
 import com.marko.reservations.model.User;
 import com.marko.reservations.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class UserService {
         if (user.isPresent()) {
             return user;
         }
-        throw new UserNotFoundException("User with id " + id + " not found in database!");
+        throw new EntityNotFoundException("User with id " + id + " not found in database!");
     }
     public User saveUser(User user) {
         return userRepository.save(user);
@@ -47,7 +47,7 @@ public class UserService {
 
             return userRepository.save(userToUpdate);
         }
-        throw new UserNotFoundException("User with id " + id + " not found in database so it cannot be updated!");
+        throw new EntityNotFoundException("User with id " + id + " not found in database so it cannot be updated!");
     }
 
     public void deleteUser(long id) {
@@ -56,6 +56,6 @@ public class UserService {
             User userToDelete = optionalUser.get();
             userRepository.delete(userToDelete);
         }
-        throw new UserNotFoundException("User with id " + id + " not found in database!");
+        throw new EntityNotFoundException("User with id " + id + " not found in database!");
     }
 }

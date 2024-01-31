@@ -11,8 +11,8 @@ import java.util.*;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ErrorResponse> UserNotFoundException(UserNotFoundException ex, WebRequest request) {
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> EntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
         ErrorResponse message = new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 new Date(),
