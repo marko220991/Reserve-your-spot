@@ -39,8 +39,8 @@ public class UserControllerTest {
 
     @BeforeEach
     public void setup(){
-        user1 = new User(1L, "Marko", "Ilic", "Mare", "2209", "19marko91.ilic@gmail.com");
-        user2 = new User(2L, "Milos", "Nonkovic", "Milosko", "Mile0099", "milosNole@gmail.com");
+        user1 = new User(1L, "Marko", "19marko91.ilic@gmail.com");
+        user2 = new User(2L, "Milos", "milosNole@gmail.com");
     }
 
     @DisplayName("JUnit test for getting all Users")

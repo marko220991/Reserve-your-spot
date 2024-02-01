@@ -1,6 +1,7 @@
 package com.marko.reservations.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
@@ -30,6 +31,7 @@ public class Reservation {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "workStation_id")
+    @JsonIgnoreProperties("officeRoom")
     @NotNull
     private WorkStation workStation;
 

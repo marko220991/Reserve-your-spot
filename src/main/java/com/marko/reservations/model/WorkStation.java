@@ -35,6 +35,7 @@ public class WorkStation {
     private OfficeRoom officeRoom;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "workStation")
+    @JsonIgnore
     private List<Reservation> reservations;
 
     public WorkStation(long id, String uniqueCode, String description, OfficeRoom officeRoom) {

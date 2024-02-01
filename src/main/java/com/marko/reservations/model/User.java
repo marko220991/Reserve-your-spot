@@ -1,5 +1,6 @@
 package com.marko.reservations.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -32,6 +33,7 @@ public class User {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private List<Reservation> reservations;
 
     public User(Long id, String username, String email) {
