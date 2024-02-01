@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -31,4 +33,14 @@ public class WorkStation {
     @JsonIgnoreProperties("workStations")
     @JoinColumn(name = "office_room_id")
     private OfficeRoom officeRoom;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "workStation")
+    private List<Reservation> reservations;
+
+    public WorkStation(long id, String uniqueCode, String description, OfficeRoom officeRoom) {
+        this.id = id;
+        this.uniqueCode = uniqueCode;
+        this.description = description;
+        this.officeRoom = officeRoom;
+    }
 }

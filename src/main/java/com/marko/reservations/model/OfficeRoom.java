@@ -38,7 +38,7 @@ public class OfficeRoom {
 
     @OneToMany(mappedBy = "officeRoom", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("officeRoom")
-    List<WorkStation> workStations;
+    private List<WorkStation> workStations;
 
     public OfficeRoom(Long id, String name, String description, OfficeSpace officeSpace) {
         this.id = id;
