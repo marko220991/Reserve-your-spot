@@ -25,12 +25,12 @@ public class ReservationController {
         return reservationService.getAll();
     }
 
-    @GetMapping("users/{date}/{id}")
+    @GetMapping("/users/{date}/{id}")
     public Reservation findByDateAndUserId(@PathVariable LocalDate date, @PathVariable long id) {
         return reservationService.findByDateAndUserId(date, id);
     }
 
-    @GetMapping("stations/{date}/{id}")
+    @GetMapping("/stations/{date}/{id}")
     public Reservation findByDateAndWorkStationId(@PathVariable LocalDate date, @PathVariable long id) {
         return reservationService.findByDateAndWorkStationId(date, id);
     }
