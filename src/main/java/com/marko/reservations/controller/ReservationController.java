@@ -43,4 +43,10 @@ public class ReservationController {
             @PathVariable("stationId") long workStationId) {
         return reservationService.bookReservations(from, to, userId, workStationId);
     }
+
+    @GetMapping("/{from}/{to}")
+    public List<Reservation> findAllByDateRange(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable LocalDate from,
+                                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable LocalDate to) {
+        return reservationService.findReservationsByDateRange(from, to);
+    }
 }

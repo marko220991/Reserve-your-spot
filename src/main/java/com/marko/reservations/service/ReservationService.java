@@ -8,6 +8,7 @@ import com.marko.reservations.repository.ReservationRepository;
 import com.marko.reservations.repository.UserRepository;
 import com.marko.reservations.repository.WorkStationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -56,6 +57,10 @@ public class ReservationService {
             reservations.add(new Reservation(date, workStationOptional.get(), userOptional.get()));
         }
         return reservationRepository.saveAll(reservations);
+    }
+
+    public List<Reservation> findReservationsByDateRange(LocalDate dateFrom, LocalDate dateTo) {
+        return reservationRepository.findAllReservationByDateRange(dateFrom, dateTo);
     }
 
     //method to create date range
