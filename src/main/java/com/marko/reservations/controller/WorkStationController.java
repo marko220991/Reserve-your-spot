@@ -2,6 +2,7 @@ package com.marko.reservations.controller;
 
 import com.marko.reservations.model.WorkStation;
 import com.marko.reservations.service.WorkStationService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class WorkStationController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public WorkStation saveWorkStation(@RequestBody WorkStation workStation) {
+    public WorkStation saveWorkStation(@Valid @RequestBody WorkStation workStation) {
         return workStationService.addWorkStation(workStation);
     }
 

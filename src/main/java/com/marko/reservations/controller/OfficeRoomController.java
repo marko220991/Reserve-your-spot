@@ -2,6 +2,7 @@ package com.marko.reservations.controller;
 
 import com.marko.reservations.model.OfficeRoom;
 import com.marko.reservations.service.OfficeRoomService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class OfficeRoomController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public OfficeRoom addRoom(@RequestBody OfficeRoom officeRoom) {
+    public OfficeRoom addRoom(@Valid @RequestBody OfficeRoom officeRoom) {
         return officeRoomService.saveRoom(officeRoom);
     }
 

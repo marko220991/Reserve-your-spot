@@ -2,6 +2,7 @@ package com.marko.reservations.controller;
 
 import com.marko.reservations.model.OfficeSpace;
 import com.marko.reservations.service.OfficeSpaceService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class OfficeSpaceController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public OfficeSpace addSpace(@RequestBody OfficeSpace officeSpace) {
+    public OfficeSpace addSpace(@Valid @RequestBody OfficeSpace officeSpace) {
         return officeSpaceService.saveSpace(officeSpace);
     }
 

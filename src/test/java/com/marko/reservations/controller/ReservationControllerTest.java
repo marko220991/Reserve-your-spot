@@ -52,7 +52,7 @@ public class ReservationControllerTest {
     @Test
     public void test_save_reservations_by_dateRange() throws Exception {
         mockMvc.perform(post("/api/reservations/saveAll/2024-02-03/2024-02-08/1/1"))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andDo(print());
     }
 

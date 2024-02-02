@@ -2,6 +2,7 @@ package com.marko.reservations.controller;
 
 import com.marko.reservations.model.User;
 import com.marko.reservations.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class UserController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public User saveNewUser(@RequestBody User user) {
+    public User saveNewUser(@Valid @RequestBody User user) {
         return userService.saveUser(user);
     }
 
