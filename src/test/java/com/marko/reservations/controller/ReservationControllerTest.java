@@ -11,6 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,6 +45,13 @@ public class ReservationControllerTest {
     @Test
     public void test_get_reservations_by_dateRange() throws Exception {
         mockMvc.perform(get("/api/reservations/2022-02-03/2022-02-05"))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+    @DisplayName("JUnit test for saving reservations within date range")
+    @Test
+    public void test_save_reservations_by_dateRange() throws Exception {
+        mockMvc.perform(post("/api/reservations/saveAll/2024-02-03/2024-02-08/1/1"))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
