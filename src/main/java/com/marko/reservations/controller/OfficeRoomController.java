@@ -3,6 +3,7 @@ package com.marko.reservations.controller;
 import com.marko.reservations.model.OfficeRoom;
 import com.marko.reservations.service.OfficeRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,11 +31,13 @@ public class OfficeRoomController {
     }
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public OfficeRoom addRoom(@RequestBody OfficeRoom officeRoom) {
         return officeRoomService.saveRoom(officeRoom);
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeOfficeRoom(@PathVariable long id) {
         officeRoomService.deleteOfficeRoom(id);
     }

@@ -4,6 +4,7 @@ import com.marko.reservations.model.Reservation;
 import com.marko.reservations.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -36,6 +37,7 @@ public class ReservationController {
     }
 
     @PostMapping("/saveAll/{from}/{to}/{userId}/{stationId}")
+    @ResponseStatus(HttpStatus.CREATED)
     public List<Reservation> saveReservationsByDateRange(
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable LocalDate from,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable LocalDate to,
@@ -48,5 +50,11 @@ public class ReservationController {
     public List<Reservation> findAllByDateRange(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable LocalDate from,
                                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable LocalDate to) {
         return reservationService.findReservationsByDateRange(from, to);
+    }
+
+    @DeleteMapping("/delete/{date}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteReservationByDate(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable LocalDate date) {
+        reservationService.deleteReservationByDate(date);
     }
 }

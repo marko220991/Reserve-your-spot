@@ -44,4 +44,10 @@ public class WorkStation {
         this.description = description;
         this.officeRoom = officeRoom;
     }
+
+    public WorkStation(long id, String uniqueCode, String description) {
+        this.id = id;
+        this.uniqueCode = uniqueCode;
+        this.description = description;
+    }
 }

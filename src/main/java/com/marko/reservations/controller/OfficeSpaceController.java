@@ -3,6 +3,7 @@ package com.marko.reservations.controller;
 import com.marko.reservations.model.OfficeSpace;
 import com.marko.reservations.service.OfficeSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,11 +31,13 @@ public class OfficeSpaceController {
     }
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public OfficeSpace addSpace(@RequestBody OfficeSpace officeSpace) {
         return officeSpaceService.saveSpace(officeSpace);
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeOfficeSpace(@PathVariable long id) {
         officeSpaceService.deleteOfficeSpace(id);
     }

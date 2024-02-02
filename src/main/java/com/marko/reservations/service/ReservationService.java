@@ -63,6 +63,10 @@ public class ReservationService {
         return reservationRepository.findAllReservationByDateRange(dateFrom, dateTo);
     }
 
+    public void deleteReservationByDate(LocalDate date) {
+        reservationRepository.deleteReservationByDate(date);
+    }
+
     //method to create date range
     private static List<LocalDate> getDateRange(LocalDate start, LocalDate end) {
         List<LocalDate> ret = new ArrayList<LocalDate>();

@@ -31,6 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public User saveNewUser(@RequestBody User user) {
         return userService.saveUser(user);
     }

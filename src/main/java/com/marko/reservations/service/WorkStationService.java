@@ -30,4 +30,18 @@ public class WorkStationService {
         }
         return optionalWorkStation;
     }
+
+    public WorkStation addWorkStation(WorkStation workStation) {
+        return workStationRepository.save(workStation);
+    }
+
+    public void delete(long id) {
+        Optional<WorkStation> optionalWorkStation = workStationRepository.findById(id);
+        if (optionalWorkStation.isEmpty()) {
+            throw new EntityNotFoundException("WorkStation with id " + id + " not found in database!");
+        }
+
+        WorkStation workStation = optionalWorkStation.get();
+        workStationRepository.delete(workStation);
+    }
 }
