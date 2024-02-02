@@ -24,18 +24,22 @@ public class UserController {
     public List<User> findAll() {
         return userService.getUsers();
     }
+
     @GetMapping("/{id}")
     public Optional<User> findById(@PathVariable long id) {
         return userService.getById(id);
     }
+
     @PostMapping("/add")
     public User saveNewUser(@RequestBody User user) {
         return userService.saveUser(user);
     }
+
     @PutMapping("update/{id}")
     public User updateUser(@RequestBody User user, @PathVariable long id) {
         return userService.updateUser(user, id);
     }
+
     @DeleteMapping("delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeUser(@PathVariable long id) {

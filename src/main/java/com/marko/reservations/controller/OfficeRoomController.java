@@ -7,27 +7,33 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @RestController
 @RequestMapping("api/rooms")
 public class OfficeRoomController {
 
     private final OfficeRoomService officeRoomService;
+
     @Autowired
     public OfficeRoomController(OfficeRoomService officeRoomService) {
         this.officeRoomService = officeRoomService;
     }
+
     @GetMapping
     public List<OfficeRoom> findAll() {
         return officeRoomService.getAll();
     }
+
     @GetMapping("/{id}")
     public Optional<OfficeRoom> findById(@PathVariable long id) {
         return officeRoomService.getById(id);
     }
+
     @PostMapping("/add")
     public OfficeRoom addRoom(@RequestBody OfficeRoom officeRoom) {
         return officeRoomService.saveRoom(officeRoom);
     }
+
     @DeleteMapping("/delete/{id}")
     public void removeOfficeRoom(@PathVariable long id) {
         officeRoomService.deleteOfficeRoom(id);

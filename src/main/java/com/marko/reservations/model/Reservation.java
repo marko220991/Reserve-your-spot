@@ -39,4 +39,10 @@ public class Reservation {
     @JoinColumn(name = "user_id")
     @NotNull
     private User user;
+
+    public Reservation(LocalDate date, WorkStation workStation, User user) {
+        this.date = date;
+        this.workStation = workStation;
+        this.user = user;
+    }
 }

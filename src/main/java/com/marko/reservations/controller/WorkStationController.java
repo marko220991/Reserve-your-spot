@@ -16,14 +16,17 @@ import java.util.Optional;
 public class WorkStationController {
 
     private final WorkStationService workStationService;
+
     @Autowired
     public WorkStationController(WorkStationService workStationService) {
         this.workStationService = workStationService;
     }
+
     @GetMapping
     public List<WorkStation> findAll() {
         return workStationService.getAll();
     }
+
     @GetMapping("/{id}")
     public Optional<WorkStation> findById(@PathVariable long id) {
         return workStationService.getById(id);

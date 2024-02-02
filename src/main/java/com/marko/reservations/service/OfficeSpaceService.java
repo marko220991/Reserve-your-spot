@@ -14,6 +14,7 @@ import java.util.Optional;
 public class OfficeSpaceService {
 
     private final OfficeSpaceRepository officeSpaceRepository;
+
     @Autowired
     public OfficeSpaceService(OfficeSpaceRepository officeSpaceRepository) {
         this.officeSpaceRepository = officeSpaceRepository;
@@ -28,7 +29,7 @@ public class OfficeSpaceService {
         if (optionalOfficeSpace.isEmpty()) {
             throw new EntityNotFoundException("Office Space with id " + id + " not found in database!");
         }
-        return  optionalOfficeSpace;
+        return optionalOfficeSpace;
     }
 
     public OfficeSpace saveSpace(OfficeSpace officeSpace) {

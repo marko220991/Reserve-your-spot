@@ -13,22 +13,27 @@ import java.util.Optional;
 public class OfficeSpaceController {
 
     private final OfficeSpaceService officeSpaceService;
+
     @Autowired
     public OfficeSpaceController(OfficeSpaceService officeSpaceService) {
         this.officeSpaceService = officeSpaceService;
     }
+
     @GetMapping
     public List<OfficeSpace> findAll() {
         return officeSpaceService.getAll();
     }
+
     @GetMapping("/{id}")
     public Optional<OfficeSpace> findById(@PathVariable long id) {
         return officeSpaceService.getById(id);
     }
+
     @PostMapping("/add")
     public OfficeSpace addSpace(@RequestBody OfficeSpace officeSpace) {
         return officeSpaceService.saveSpace(officeSpace);
     }
+
     @DeleteMapping("/delete/{id}")
     public void removeOfficeSpace(@PathVariable long id) {
         officeSpaceService.deleteOfficeSpace(id);

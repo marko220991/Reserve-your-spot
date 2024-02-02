@@ -13,6 +13,7 @@ import java.util.Optional;
 public class WorkStationService {
 
     private final WorkStationRepository workStationRepository;
+
     @Autowired
     public WorkStationService(WorkStationRepository workStationRepository) {
         this.workStationRepository = workStationRepository;
