@@ -1,6 +1,8 @@
 # Use a Java base image
 FROM openjdk:17-alpine
-COPY build/libs/reservations-0.0.1-SNAPSHOT.jar reservations-0.0.1-SNAPSHOT.jar
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
 EXPOSE 8080
 # Run the Spring Boot application when the container starts
-ENTRYPOINT ["java", "-jar", "/reservations-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
