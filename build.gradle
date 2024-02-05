@@ -23,10 +23,12 @@ repositories {
 }
 
 docker {
-	name "reserve-your-spor:${project.version}"
+	name 'reserve-your-spot'
+	tag 'latest', 'reserve-your-spot'
 	dockerfile file('Dockerfile')
 	copySpec.from(jar).rename(".*", "app.jar")
 	buildArgs(["JAR_FILE" : "app.jar"])
+	tag 'DockerHub', "marko30/reserve-your-spot:latest"
 }
 
 dependencies {
