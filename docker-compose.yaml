@@ -11,8 +11,7 @@ services:
 
   spring-mysql-docker:
     container_name: app_spring
-    build:
-      dockerfile: Dockerfile
+    image: marko30/reserve-your-spot:latest
     ports:
       - "9090:8080"
     restart: on-failure

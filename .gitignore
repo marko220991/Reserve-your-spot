@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Secret credentials file ###
-env.properties
+src/main/resources/env.properties
