@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reserve-your-spot-app
+  labels:
+    app: reserve-your-spot-app
+spec:
+  selector:
+    matchLabels:
+      app: reserve-your-spot-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: reserve-your-spot-app
+    spec:
+      containers:
+        - name: reserve-your-spot-app
+          image: marko30/reserve-your-spot:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-pass
+                  key: mysql-user-password
+            - name: MYSQL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name:  mysql-config-map
+                  key: mysql-server
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name:  mysql-config-map
+                  key: mysql-database-name
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config-map
+                  key: mysql-user-username
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reserve-your-spot-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: reserve-your-spot-app
+  type: NodePort
