@@ -45,7 +45,7 @@ public class Config {
         WorkStation workStationOne = new WorkStation(1L, "2209", "Work Station No1", officeRoomOne);
         WorkStation workStationTwo = new WorkStation(2L, "2210", "Work Station No2", officeRoomOne);
 
-        LocalDate date = LocalDate.parse("2024-02-08");
+        LocalDate date = LocalDate.parse("2025-09-20");
         Reservation reservationOne = new Reservation(1L, date, workStationOne, userOne);
 
 
